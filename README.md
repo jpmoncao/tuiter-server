@@ -1,4 +1,4 @@
-# Tuiter API
+# Maria_Node Framework
 ## by: [jpmoncao]('https://github.com/jpmoncao')
 
 ### 1. Requisitos

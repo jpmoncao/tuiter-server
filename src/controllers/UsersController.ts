@@ -11,12 +11,28 @@ import jwt from 'jsonwebtoken';
 export default class UsersController {
     async index(req: Request, res: Response): Promise<void> {
         try {
+            if ('substr' in req.query) {
+                const searchTerm = req.query.substr;
+                
+                const users = await Users.findAll({
+                    where: {
+                        username: {
+                            [Op.like]: `${searchTerm}%`
+                        }
+                    }
+                });
+    
+                res.json(users);
+                return;
+            }
+            
             const users = await Users.findAll();
             res.json(users);
         } catch (error) {
             console.error('Erro ao buscar users:', error);
         }
     }
+    
 
     async store(req: Request, res: Response): Promise<void> {
         try {
