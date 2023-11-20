@@ -5,6 +5,9 @@ import { Users } from './Users.js';
 class Tuites extends Model {
     id_tuite!: string;
     content!: Buffer;
+    likes_count!: number;
+    retuites_count!: number;
+    comments_count!: number;
 }
 
 Tuites.init(

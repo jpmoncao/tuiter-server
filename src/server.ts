@@ -1,8 +1,17 @@
 // Express
 import express, { Express } from 'express';
-//Dependências
+
+// Dependências
 import cors from 'cors';
 import dotenv from 'dotenv';
+
+// Rotas
+import UsersRouter from './routes/UsersRouter.js';
+import TuitesRouter from './routes/TuitesRouter.js';
+
+// Controller
+import UsersController from './controllers/UsersController.js';
+import TuitesController from './controllers/TuitesController.js';
 
 class App {
     private PORT: Number;
@@ -21,8 +30,13 @@ class App {
         this.app.use(cors());
 
         // Rotas
-        // const ExampleRouter = new ExampleRouter();
-        // this.app.use('/examples', ExampleRouter.getRouter());
+        const usersController = new UsersController();
+        const usersRouter = new UsersRouter(usersController);
+        this.app.use('/users', usersRouter.getRouter());
+
+        const tuitesController = new TuitesController();
+        const tuitesRouter = new TuitesRouter(tuitesController);
+        this.app.use('/tuites', tuitesRouter.getRouter());
     }
 
     init() {

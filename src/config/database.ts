@@ -10,7 +10,7 @@ const sequelize: Sequelize = new Sequelize(
     host: process.env.DB_HOST,
     dialect: 'mariadb',
     port: Number(process.env.DB_PORT),
-    logging: (log) => logger.info(log)
+    logging: (log: string) => logger.info(log)
 }
 );
 
