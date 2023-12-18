@@ -7,11 +7,14 @@ import { TuitesRetuites } from '../models/TuitesRetuites.js';
 import { TuitesComments } from '../models/TuitesComments.js';
 
 import { randomUUID } from 'crypto';
+import { Users } from '../models/Users.js';
 
 export default class TuitesController {
     async index(req: Request, res: Response): Promise<void> {
         try {
-            const tuites = await Tuites.findAll();
+            const tuites = await Tuites.findAll({
+                include: [Users]
+            });
             res.json(tuites);
         } catch (error) {
             console.error('Erro ao buscar tuites:', error);
